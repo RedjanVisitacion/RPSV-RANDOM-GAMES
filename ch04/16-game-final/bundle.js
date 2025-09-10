@@ -1636,6 +1636,8 @@ var GameOverScreen = function (_Container) {
     };
 
     _this.add(new _Level2.default(game.w, game.h));
+    // Credit line
+    drawText("This game modified by: RPSV_CODES", { x: game.w / 2, y: 20 }, 20);
 
     var complete = (stats.pellets / stats.maxPellets * 100).toFixed(1);
     if (stats.score > _hiscore2.default.bestScore) {
@@ -1824,6 +1826,9 @@ var GameScreen = function (_Container) {
       var score = this.add(new Text("", Object.assign({ align: "center" }, font)));
       complete.pos = { x: 20, y: 20 };
       score.pos = { x: game.w / 2, y: 20 };
+      // Credit line (GUI layer so it stays on screen)
+      var credit = this.add(new Text("This game modified by: RPSV_CODES", { font: "14pt 'VT323', monospace", fill: "#5f0", align: "center" }));
+      credit.pos = { x: game.w / 2, y: 52 };
 
       this.livesIcons = Array.from(new Array(4), function (_, i) {
         var icon = _this2.add(new TileSprite(textures.squizz, 32, 32));
@@ -2074,7 +2079,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Container = _index2.default.Container,
     Sprite = _index2.default.Sprite,
-    Texture = _index2.default.Texture;
+    Texture = _index2.default.Texture,
+    Text = _index2.default.Text;
 
 var texture = new Texture("res/images/logo-mompop.png");
 
@@ -2091,6 +2097,9 @@ var LogoScreen = function (_Container) {
 
     var logo = _this.logo = _this.add(new Sprite(texture));
     logo.pos = { x: 220, y: 130 };
+    var credit = new Text("This game modified by: RPSV_CODES", { font: "14pt 'VT323', monospace", fill: "#111", align: "center" });
+    credit.pos = { x: game.w / 2, y: 10 };
+    _this.add(credit);
     return _this;
   }
 
@@ -2185,7 +2194,11 @@ var TitleScreen = function (_Container) {
 
     _this.add(new _Level2.default(game.w, game.h));
 
-    _this.title = drawText("SQUIZZBALL", { x: 230, y: 100 }, 40);
+    _this.title = drawText("SQUIZ BALL", { x: 230, y: 100 }, 40);
+    // Credit line
+    var credit = new Text("This game modified by: RPSV_CODES", { font: "14pt 'VT323', monospace", fill: "#111", align: "center" });
+    credit.pos = { x: game.w / 2, y: 10 };
+    _this.add(credit);
 
     drawText("Fill up the screen!", { x: 220, y: 200 });
     drawText("Shoes go fast, and...", { x: 220, y: 250 });
