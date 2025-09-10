@@ -511,6 +511,13 @@ var lastSpawn = 0;
 var spawnSpeed = 1.0;
 var scoreAmount = 0;
 var gameOver = false;
+var creditText = new Text("This game modified by: RPSV_CODES", {
+  font: "14pt sans-serif",
+  fill: "#8B8994",
+  align: "center"
+});
+creditText.pos = { x: w / 2, y: 10 };
+scene.add(creditText);
 
 // Main loop
 var dt = 0;
@@ -524,8 +531,17 @@ function loopy(ms) {
   last = t;
 
   // Game logic code
-  ship.pos.x += Math.sin(t * 10); // "bob" the player
-  score.text = "score: " + scoreAmount; // update score
+  if (typeof creditText !== "undefined") {
+    creditText.text = "This game modified by: RPSV_CODES";
+  }
+
+  if (ship && ship.pos) {
+    ship.pos.x += Math.sin(t * 10) * 0.5; // "bob" the player, smaller movement
+  }
+
+  if (typeof score !== "undefined" && score.text !== undefined) {
+    score.text = "Score: " + scoreAmount; // update score
+  }
 
   // Check if player can fire yet
   if (!gameOver && controls.action && t - lastShot > 0.15) {
@@ -536,23 +552,18 @@ function loopy(ms) {
   // Check for collisions, or out of screen
   baddies.children.forEach(function (baddie) {
     bullets.children.forEach(function (bullet) {
-
-      // Check distance between baddie and bullet
       var dx = baddie.pos.x + 16 - (bullet.pos.x + 8);
       var dy = baddie.pos.y + 16 - (bullet.pos.y + 8);
       if (Math.sqrt(dx * dx + dy * dy) < 24) {
-        // A hit!
         bullet.dead = true;
         baddie.dead = true;
         scoreAmount += Math.floor(t);
       }
-      // Bullet out of the screen?
       if (bullet.pos.x >= w + 20) {
         bullet.dead = true;
       }
     });
 
-    // Check if baddie reached the city
     if (baddie.pos.x < -32) {
       if (!gameOver) {
         doGameOver();
@@ -568,7 +579,6 @@ function loopy(ms) {
     var position = Math.random() * (h - 24);
     spawnBaddie(w, position, speed);
 
-    // Accelerating for the next spawn
     spawnSpeed = spawnSpeed < 0.05 ? 0.6 : spawnSpeed * 0.97 + 0.001;
   }
 
@@ -576,6 +586,7 @@ function loopy(ms) {
   scene.update(dt, t);
   renderer.render(scene);
 }
+
 requestAnimationFrame(loopy);
 
 },{"../pop/index.js":7}]},{},[9]);
