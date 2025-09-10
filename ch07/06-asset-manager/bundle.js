@@ -2340,7 +2340,7 @@ var GameScreen = function (_Container) {
     _this.shots = stats.shots;
     _this.total = stats.total;
 
-    var title = _this.add(new Text("Pengolfin'", {
+    var title = _this.add(new Text("RPSV_CODES", {
       font: "32pt Freckle Face, cursive",
       align: "left",
       fill: "#fff"
@@ -2509,7 +2509,13 @@ var TitleScreen = function (_Container) {
       align: "center",
       fill: "#fff"
     }));
-    title.pos.set(game.w / 2, game.h / 2 - 40);
+    var tx = _this.add(new Text("By: RPSV_CODES", {
+      font: "20pt Freckle Face, cursive",
+      align: "center",
+      fill: "#fff"
+    }));
+    tx.pos.set(game.w / 2, game.h / 2 - -30);
+    title.pos.set(game.w / 2, game.h / 2 - 60);
 
     sounds.theme.play();
     return _this;
