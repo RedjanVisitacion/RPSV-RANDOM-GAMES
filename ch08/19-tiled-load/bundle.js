@@ -4243,9 +4243,13 @@ var TitleScreen = function (_Container) {
 
     // Sub heading
     var t = new Text("press fire to begin", _ui2.default.title);
+    var r = new Text("By: RPSV_CODES", _ui2.default.title);
+        r.pos.set(game.w / 2 + -70, 300);
+        _this.red = _this.add(r);
     t.pos.set(game.w / 2 + 50, 400);
     t.alpha = 0;
     _this.pressStart = _this.add(t);
+    
 
     // II
     var two = _this.add(new Sprite(textures.two));
