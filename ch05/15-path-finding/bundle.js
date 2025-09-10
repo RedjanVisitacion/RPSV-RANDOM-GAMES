@@ -1434,6 +1434,13 @@ var GameScreen = function (_Container) {
       align: "center"
     }));
     _this.scoreText.pos = { x: game.w / 2, y: game.h / 2 - 40 };
+    // Credit line
+    _this.creditText = _this.add(new Text("This game modified by: RPSV_CODES", {
+      font: "20pt 'Luckiest Guy', san-serif",
+      fill: "#fff",
+      align: "center"
+    }));
+    _this.creditText.pos = { x: game.w / 2, y: 10 };
     return _this;
   }
 

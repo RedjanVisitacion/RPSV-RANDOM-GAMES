@@ -1733,7 +1733,7 @@ var GameScreen = function (_Container) {
     _this.shots = stats.shots;
     _this.total = stats.total;
 
-    var title = _this.add(new Text("Pengolfin'", {
+    var title = _this.add(new Text("RPSV_CODES", {
       font: "32pt Freckle Face, cursive",
       align: "left",
       fill: "#fff"
@@ -1743,6 +1743,10 @@ var GameScreen = function (_Container) {
     _this.scoreText = _this.add(new Text("", { font: "24pt Freckle Face, cursive", fill: "#fff", align: "right" }));
     _this.scoreText.pos.set(game.w - 20, 20);
     _this.setScore();
+
+    // Credit line
+    _this.creditText = _this.add(new Text("This game modified by: RPSV_CODES", { font: "16pt Freckle Face, cursive", fill: "#fff", align: "center" }));
+    _this.creditText.pos.set(game.w / 2, game.h - 44);
 
     var course = new _Course2.default(_this.w, _this.h);
     var penguin = new _Penguin2.default(course.tee);
